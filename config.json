@@ -1,0 +1,6 @@
+{
+  "name": "example_match.json",
+  "viperPath": "resources/",
+  "port": "3008",
+  "nameHuman": "mason"
+}
