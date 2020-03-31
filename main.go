@@ -16,7 +16,7 @@ func main() {
 		log.Fatalln("Error getting configuration, shutting down...", err)
 	}
 
-	log.Println("listening at", conf.Port)
+	log.Println("listening at",conf.Port)
 
 	err = viperConfig.InitViper(conf)
 	if err != nil {
@@ -27,7 +27,7 @@ func main() {
 	// ./ll-jsonConverter key value key value
 	args := os.Args[1:] //1: gets all command line args, normal indexing works for single args
 
-	for index := 0; index < len(args); index++ {
+	for index := 0; index < len(args); index++{
 		//println("Index ",index, " Arguments", args[index], args[index+1])
 		key := args[index]
 		index++
@@ -50,7 +50,7 @@ func createHTTPServer(config config.Config) *http.Server {
 	server := &http.Server{Addr: ":" + config.Port, Handler: r}
 
 	r.Handle("/update-config/{configName}", viperConfig.UpdateConfigWatcher()).Methods(http.MethodPost)
-	r.HandleFunc("/update-param/", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/update-param/",func(w http.ResponseWriter,r *http.Request){
 		v := r.URL.Query()
 		key := v.Get("key")
 		value := v.Get("value")
@@ -62,5 +62,7 @@ func createHTTPServer(config config.Config) *http.Server {
 
 	})
 
+
 	return server
 }
+
